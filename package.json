@@ -25,7 +25,7 @@
   },
   "scripts": {
     "dev": "webpack serve --mode development --env development",
-    "build": "webpack --mode demo",
+    "build": "webpack --mode production",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
