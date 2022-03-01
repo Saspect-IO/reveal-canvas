@@ -1,5 +1,5 @@
 import development from './env.dev';
-import production  from './env.demo';
+import production from './env.demo';
 
 // ----------------------------------------------------------------------------
 // Module Vars
