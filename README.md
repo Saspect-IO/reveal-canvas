@@ -25,9 +25,11 @@ yarn build
 ```
 
 ### Lint code
-
 > Note: running this command will apply linting fixes.
 
+```bash
+yarn lint
+```
 
 ### Format code
 
