@@ -2,6 +2,11 @@
 
 TypeScript project showing particle effects using the canvac 2D API.
 
+## Demo
+- View on deskstop for interactive experience. Not yet optimized for mobile.
+- [Canvas 2D API Demo](https://saspect-io.github.io/reveal-canvas/)
+
+
 
 ## Prerequisites
 
@@ -38,3 +43,7 @@ yarn lint
 ```bash
 pnpm format
 ```
+
+## Source for learning
+Resource [here](https://www.youtube.com/watch?v=RCVxXgJ8xSk&list=PLMx93AkeYxpWOrJv27UpaNPxWyl4fA-Of&index=2) for effect
+
