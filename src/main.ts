@@ -7,7 +7,9 @@ import { ParticleConfig, ProgramEntrySettings } from './modules';
 
 (async () => {
   const cvContext = new CVContext(ProgramEntrySettings.CANVAS_ID);
-  cvContext.fitScreen().setColor().setSize().clear();
+
+  if (!cvContext.getContext()) return; // escape program if context does not exist
+  cvContext.fitScreen().setSize();
   const { canvas, ctx } = cvContext;
 
   const texture = new Texture(canvas, ctx);
@@ -15,7 +17,7 @@ import { ParticleConfig, ProgramEntrySettings } from './modules';
   texture.drawImage(img);
   const pixels = texture.loadImagePixels();
 
-  cvContext.clear();
+  cvContext.clear().setSize().setColor(); // clear image after getting image data to pixels
 
   const painting = new Painting(canvas, ctx, pixels);
   const particleStore: Particle[] = Particle.generateParticles(

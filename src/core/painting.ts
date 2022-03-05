@@ -19,10 +19,10 @@ export default class Painting {
   }
 
   getMappedImage(): MappedImage[][] {
-    let result = [];
+    const result = [];
 
     for (let y = 0; y < this.canvas.height; y++) {
-      let row = [];
+      const row = [];
       for (let x = 0; x < this.canvas.width; x++) {
         const red = this.pixels.data[(y * this.pixels.width + x) * 4];
         const green = this.pixels.data[(y * this.pixels.width + x) * 4 + 1];

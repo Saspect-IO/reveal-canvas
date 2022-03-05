@@ -13,7 +13,6 @@ export default class CVContext {
   }
 
   setColor() {
-    this.ctx.globalAlpha = ProgramEntrySettings.GLOBAL_ALPHA;
     this.ctx.fillStyle = ProgramEntrySettings.CANVAS_FILL_STYLE;
     return this;
   }
