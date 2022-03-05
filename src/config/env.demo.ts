@@ -1,4 +1,4 @@
-const githubPagesRoot = '/canvas-2d-reveal';
+const githubPagesRoot = '/reveal-canvas';
 const texture = `${githubPagesRoot}/assets/todoist.jpg`;
 
 export default {
