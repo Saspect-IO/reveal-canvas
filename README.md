@@ -49,5 +49,5 @@ yarn format
 
 ## Resources for learning:
 - MDN Canvas API: [link](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
-- Particle effects: [link](https://www.youtube.com/watch?v=RCVxXgJ8xSk&list=PLMx93AkeYxpWOrJv27UpaNPxWyl4fA-Of&index=2) for effect
+- Particle effects: [link](https://www.youtube.com/watch?v=RCVxXgJ8xSk&list=PLMx93AkeYxpWOrJv27UpaNPxWyl4fA-Of&index=2)
 
