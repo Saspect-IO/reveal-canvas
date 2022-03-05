@@ -53,15 +53,12 @@ module.exports = {
           loader:'file-loader',
           options:{
             name:'[name].[ext]',
-            outputPath:(url, resourcePath)=>{
-              const pathname = new URL(resourcePath).pathname.split('\\');
-              const name = pathname[pathname.length-3]
-              return `assets/${name}/${url}`
+            outputPath:(url)=>{
+              return `assets/${url}`
             }
           }
         }],
       },
-
     ]
   },
   
