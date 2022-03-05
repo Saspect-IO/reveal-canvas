@@ -10,24 +10,22 @@
 <style>
     html,
     body {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         background-color: #fdfcf8;
-        height: 100%;
-        width: 100%;
         overflow: hidden;
     };
-    #canvas {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
 </style>
 
-<body style="height: 100%; width: 100%;">
-    <canvas id="canvas"></canvas>
+<body>
+    <canvas id="canvas" height="400" width="600">
+    </canvas>
 </body>
 
 </html>
