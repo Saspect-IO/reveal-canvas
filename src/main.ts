@@ -27,9 +27,8 @@ import { ParticleConfig, ProgramEntrySettings } from './modules';
   );
 
   function animate() {
-    for (let i = 0; i < particleStore.length; i++) {
-      particleStore[i].update();
-      particleStore[i].draw();
+    for (const particle of particleStore) {
+      particle.update().draw();
     }
     requestAnimationFrame(animate);
   }
