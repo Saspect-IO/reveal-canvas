@@ -1,9 +1,9 @@
-# The Reveal
+# Canvas Reveal
 
-TypeScript project showing particle effects using the canvas 2D API.
+A canvas 2D API project to demo paint and particle effects.
 
 ## Demo
-- View on deskstop for interactive experience. Not yet optimized.
+- View on deskstop for interactive experience.
 - [Canvas 2D API Demo](https://saspect-io.github.io/reveal-canvas/)
 
 
@@ -47,6 +47,7 @@ yarn lint
 yarn format
 ```
 
-## Source for learning
-Resource [here](https://www.youtube.com/watch?v=RCVxXgJ8xSk&list=PLMx93AkeYxpWOrJv27UpaNPxWyl4fA-Of&index=2) for effect
+## Resource for learning
+MDN [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+Paeticle effects [here](https://www.youtube.com/watch?v=RCVxXgJ8xSk&list=PLMx93AkeYxpWOrJv27UpaNPxWyl4fA-Of&index=2) for effect
 
