@@ -47,7 +47,7 @@ yarn lint
 yarn format
 ```
 
-## Resource for learning
-MDN [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
-Paeticle effects [here](https://www.youtube.com/watch?v=RCVxXgJ8xSk&list=PLMx93AkeYxpWOrJv27UpaNPxWyl4fA-Of&index=2) for effect
+## Resources for learning:
+- MDN Canvas API: [link](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+- Particle effects: [link](https://www.youtube.com/watch?v=RCVxXgJ8xSk&list=PLMx93AkeYxpWOrJv27UpaNPxWyl4fA-Of&index=2) for effect
 
