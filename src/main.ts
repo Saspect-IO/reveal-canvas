@@ -1,8 +1,8 @@
 import { config } from './config/env';
 import CVContext from './core/cvContext';
 import Painting from '@/core/painting';
-import Particle from './core/particle';
 import Texture from './core/texture';
+import Particle from './core/particle';
 import { ParticleConfig, ProgramEntrySettings } from './modules';
 
 (async () => {
@@ -34,4 +34,5 @@ import { ParticleConfig, ProgramEntrySettings } from './modules';
     requestAnimationFrame(animate);
   }
   animate();
+  
 })();
