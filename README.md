@@ -1,9 +1,9 @@
 # The Reveal
 
-TypeScript project showing particle effects using the canvac 2D API.
+TypeScript project showing particle effects using the canvas 2D API.
 
 ## Demo
-- View on deskstop for interactive experience. Not yet optimized for mobile.
+- View on deskstop for interactive experience. Not yet optimized.
 - [Canvas 2D API Demo](https://saspect-io.github.io/reveal-canvas/)
 
 
@@ -11,7 +11,10 @@ TypeScript project showing particle effects using the canvac 2D API.
 ## Prerequisites
 
 -   `Node` (minimum: `v14.18.1`): [install docs](https://nodejs.org/en/download/package-manager/)
--   `yarn` (minimum: `v1.22.17`): [install docs](https://pnpm.io/installation)
+-   `yarn` (minimum: `v1.22.17`): [install docs](https://www.npmjs.com/package/yarn)
+    ```bash
+     npm yarn -g
+    ```
 
 ## Install Dependencies
 
@@ -41,7 +44,7 @@ yarn lint
 > Note: running this command will apply formatting fixes.
 
 ```bash
-pnpm format
+yarn format
 ```
 
 ## Source for learning
