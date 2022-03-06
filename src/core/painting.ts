@@ -1,3 +1,5 @@
+import Particle from './particle';
+
 export interface MappedImage {
   brightness: number;
   color: string;
@@ -18,24 +20,21 @@ export default class Painting {
     this.pixels = pixels;
   }
 
-  getMappedImage(): MappedImage[][] {
+  generate(): Particle[] {
     const result = [];
 
     for (let y = 0; y < this.canvas.height; y++) {
-      const row = [];
       for (let x = 0; x < this.canvas.width; x++) {
         const red = this.pixels.data[(y * this.pixels.width + x) * 4];
         const green = this.pixels.data[(y * this.pixels.width + x) * 4 + 1];
         const blue = this.pixels.data[(y * this.pixels.width + x) * 4 + 2];
         const brightness = this.getRelativeBrightness(red, green, blue);
         const color = this.getColor(red, green, blue);
-        const cell = {
-          brightness,
-          color,
-        };
-        row.push(cell);
+
+        result.push(
+          new Particle(this.canvas, this.ctx, x, y, color, brightness),
+        );
       }
-      result.push(row);
     }
     return result;
   }
