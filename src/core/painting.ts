@@ -1,17 +1,12 @@
 import { WindowEvents } from '@/modules';
 import Particle from './particle';
-
-export interface MappedImage {
-  brightness: number;
-  color: string;
-}
-
 export default class Painting {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   pixels: ImageData;
-  xCoord: number;
-  yCoord: number;
+  mouseX: number;
+  mouseY: number;
+  mouseBufferRadius = 5;
 
   constructor(
     canvas: HTMLCanvasElement,
@@ -21,16 +16,16 @@ export default class Painting {
     this.canvas = canvas;
     this.ctx = ctx;
     this.pixels = pixels;
-    this.xCoord = 0;
-    this.yCoord = 0;
+    this.mouseX = 0;
+    this.mouseY = 0;
     this.canvas.addEventListener(WindowEvents.MOUSE_MOVE, (e: MouseEvent) =>
-      this.getCoords(e),
+      this.getMouseData(e),
     );
   }
 
-  getCoords(e: MouseEvent) {
-    this.xCoord = e.clientX;
-    this.yCoord = e.clientY;
+  getMouseData(e: MouseEvent) {
+    this.mouseX = e.clientX;
+    this.mouseY = e.clientY;
   }
 
   generate(): Particle[] {
