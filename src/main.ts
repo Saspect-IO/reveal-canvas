@@ -2,8 +2,7 @@ import { config } from './config/env';
 import CVContext from './core/cvContext';
 import Painting from '@/core/painting';
 import Texture from './core/texture';
-import Particle from './core/particle';
-import { ParticleConfig, ProgramEntrySettings } from './modules';
+import { ProgramEntrySettings } from './modules';
 
 (async () => {
   const cvContext = new CVContext(ProgramEntrySettings.CANVAS_ID);
@@ -20,16 +19,19 @@ import { ParticleConfig, ProgramEntrySettings } from './modules';
   cvContext.clear().setSize().setColor(); // clear image after getting image data to pixels
 
   const painting = new Painting(canvas, ctx, pixels);
-  const particleStore: Particle[] = Particle.generateParticles(
-    canvas,
-    ctx,
-    ParticleConfig.COUNT,
-    painting.getMappedImage(),
-  );
+  const particleStore = painting.generate();
 
   function animate() {
     for (const particle of particleStore) {
-      particle.update().draw();
+      particle
+        .update(
+          particle.xBase,
+          particle.yBase,
+          painting.mouseX,
+          painting.mouseY,
+          painting.mouseBufferRadius,
+        )
+        .draw();
     }
     requestAnimationFrame(animate);
   }
