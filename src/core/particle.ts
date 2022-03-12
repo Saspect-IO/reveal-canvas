@@ -1,65 +1,79 @@
-import { MappedImage } from './painting';
+import { getVectorComponents, normalize } from '@/modules';
 
 export default class Particle {
-  xAxis: number;
-  yAxis: number;
-  xCoord: number;
-  yCoord: number;
-  fallingSpeed: number;
-  velocity: number;
-  size: number;
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
-  mappedImage: MappedImage[][];
+  color: string;
+  brightness: number;
+  xPosition: number;
+  yPosition: number;
+  xBase: number;
+  yBase: number;
+
+  velocity: number;
+  size: number;
 
   constructor(
     canvas: HTMLCanvasElement,
     ctx: CanvasRenderingContext2D,
-    mappedImage: MappedImage[][],
+    x: number,
+    y: number,
+    color: string,
+    brightness: number,
   ) {
-    this.xAxis = Math.random() * canvas.width;
-    this.yAxis = 0;
-    this.xCoord = Math.floor(this.xAxis); // ensure whole numbers for location index
-    this.yCoord = Math.floor(this.yAxis); // ensure whole numbers for location index
-    // particle falling speed calculated based on brightness of background
-    this.fallingSpeed = 0;
-    this.velocity = Math.random() * 3.5;
-    this.size = Math.random() * 1.5 + 1;
     this.canvas = canvas;
     this.ctx = ctx;
-    this.mappedImage = mappedImage;
+    this.xPosition = x;
+    this.yPosition = y;
+    this.xBase = this.xPosition;
+    this.yBase = this.yPosition;
+    this.color = color;
+    this.brightness = brightness;
+    this.velocity = Math.random() * 10 + 2;
+    this.size = 2;
   }
 
   // calculate particle position for each frame before draw
-  update() {
-    this.xCoord = Math.floor(this.xAxis); // ensure whole numbers for location index
-    this.yCoord = Math.floor(this.yAxis); // ensure whole numbers for location index
-    this.yAxis += this.velocity;
-    if (this.yAxis >= this.canvas.height) {
-      this.yAxis = 0;
-      this.xAxis = Math.random() * this.canvas.width;
+  update(
+    xPosition: number,
+    yPosition: number,
+    mouseX: number,
+    mouseY: number,
+    mouseBufferRadius: number,
+  ) {
+    const { dx, dy, magnitude } = getVectorComponents(
+      xPosition,
+      yPosition,
+      mouseX,
+      mouseY,
+    );
+
+    const unitVectorX = dx / magnitude;
+    const unitVectorY = dy / magnitude;
+    const scale = normalize(magnitude, mouseBufferRadius); // scale magnitude between 0 and 1
+    const forceDirectionX = unitVectorX * scale * this.velocity;
+    const forceDirectionY = unitVectorY * scale * this.velocity;
+
+    if (magnitude < mouseBufferRadius + this.size) {
+      this.xPosition -= forceDirectionX;
+      this.yPosition -= forceDirectionY;
+    } else {
+      if (this.xPosition !== this.xBase) {
+        this.xPosition -= this.xPosition - this.xBase;
+      } else if (this.yPosition !== this.yBase) {
+        this.yPosition -= this.yPosition - this.yBase;
+      }
     }
+
     return this;
   }
 
   draw() {
     this.ctx.beginPath();
-    this.ctx.fillStyle = this.mappedImage[this.yCoord][this.xCoord].color;
-    this.ctx.arc(this.xAxis, this.yAxis, this.size, 0, Math.PI * 2);
+    this.ctx.fillStyle = this.color;
+    this.ctx.arc(this.xPosition, this.yPosition, this.size, 0, Math.PI * 2);
+    this.ctx.closePath();
     this.ctx.fill();
     return this;
-  }
-
-  static generateParticles(
-    canvas: HTMLCanvasElement,
-    ctx: CanvasRenderingContext2D,
-    size: number,
-    mappedImage: MappedImage[][],
-  ): Particle[] {
-    const particles = [];
-    for (let i = 0; i < size; i++) {
-      particles.push(new Particle(canvas, ctx, mappedImage));
-    }
-    return particles;
   }
 }

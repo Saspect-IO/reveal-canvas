@@ -1,4 +1,4 @@
-export const getDistance = (
+export const getVectorComponents = (
   xInit: number,
   yInit: number,
   xFinal: number,
@@ -6,10 +6,14 @@ export const getDistance = (
 ) => {
   const dx = xFinal - xInit;
   const dy = yFinal - yInit;
-  const distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+  const magnitude = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
   return {
     dx,
     dy,
-    distance,
+    magnitude,
   };
+};
+export const normalize = (val: number, max: number) => {
+  const result = (max - val) / max;
+  return result < 0 ? 0 : result;
 };
