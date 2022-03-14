@@ -13,7 +13,10 @@ export const getVectorComponents = (
     magnitude,
   };
 };
+
 export const normalize = (val: number, max: number) => {
-  const result = (max - val) / max;
-  return result < 0 ? 0 : result;
+  if (max < val) {
+    return 0;
+  }
+  return (max - val) / max;
 };

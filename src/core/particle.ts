@@ -10,7 +10,7 @@ export default class Particle {
   xBase: number;
   yBase: number;
 
-  velocity: number;
+  scaleFactor: number;
   size: number;
 
   constructor(
@@ -29,7 +29,7 @@ export default class Particle {
     this.yBase = this.yPosition;
     this.color = color;
     this.brightness = brightness;
-    this.velocity = Math.random() * 10 + 2;
+    this.scaleFactor = 2;
     this.size = 2;
   }
 
@@ -48,15 +48,16 @@ export default class Particle {
       mouseY,
     );
 
-    const unitVectorX = dx / magnitude;
-    const unitVectorY = dy / magnitude;
-    const scale = normalize(magnitude, mouseBufferRadius); // scale magnitude between 0 and 1
-    const forceDirectionX = unitVectorX * scale * this.velocity;
-    const forceDirectionY = unitVectorY * scale * this.velocity;
-
     if (magnitude < mouseBufferRadius + this.size) {
-      this.xPosition -= forceDirectionX;
-      this.yPosition -= forceDirectionY;
+      const unitVectorX = dx / magnitude;
+      const unitVectorY = dy / magnitude;
+      const percentage = normalize(magnitude, mouseBufferRadius); // percentage diff between buffer and magnitude between 0 and 1
+      const forceDirectionX = unitVectorX * percentage * this.scaleFactor;
+      const forceDirectionY = unitVectorY * percentage * this.scaleFactor;
+      if (percentage) {
+        this.xPosition += forceDirectionX;
+        this.yPosition += forceDirectionY;
+      }
     } else {
       if (this.xPosition !== this.xBase) {
         this.xPosition -= this.xPosition - this.xBase;
