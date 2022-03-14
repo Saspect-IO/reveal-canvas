@@ -12,7 +12,9 @@ import { ProgramEntrySettings } from './modules';
   const { canvas, ctx } = cvContext;
 
   const texture = new Texture(canvas, ctx);
-  const img = await texture.loadImage(config?.IMAGES.DOIST.TEXTURES as string);
+  const img = await texture.loadImage(
+    config?.IMAGES.PAINTING.TEXTURES as string,
+  );
   texture.drawImage(img);
   const pixels = texture.loadImagePixels();
 

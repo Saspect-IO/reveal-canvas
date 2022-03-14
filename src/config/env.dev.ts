@@ -1,8 +1,8 @@
-import texture from '@/assets/todoist.jpg';
+import texture from '@/assets/painting.jpg';
 
 export default {
   IMAGES: {
-    DOIST: {
+    PAINTING: {
       TEXTURES: texture,
     },
   },
