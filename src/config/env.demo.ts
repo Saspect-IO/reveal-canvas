@@ -1,9 +1,9 @@
 const githubPagesRoot = '/reveal-canvas';
-const texture = `${githubPagesRoot}/assets/todoist.jpg`;
+const texture = `${githubPagesRoot}/assets/painting.jpg`;
 
 export default {
   IMAGES: {
-    DOIST: {
+    PAINTING: {
       TEXTURES: texture,
     },
   },

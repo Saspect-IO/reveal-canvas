@@ -8,3 +8,7 @@ export enum ProgramEntrySettings {
 export enum ParticleConfig {
   COUNT = 25000,
 }
+
+export enum WindowEvents {
+  MOUSE_MOVE = 'mousemove',
+}
