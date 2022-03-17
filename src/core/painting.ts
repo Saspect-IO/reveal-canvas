@@ -1,12 +1,14 @@
-import { WindowEvents } from '@/modules';
 import Particle from './particle';
+
+export interface MappedImage {
+  brightness: number;
+  color: string;
+}
+
 export default class Painting {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   pixels: ImageData;
-  mouseX: number;
-  mouseY: number;
-  mouseBufferRadius = 5;
 
   constructor(
     canvas: HTMLCanvasElement,
@@ -16,33 +18,26 @@ export default class Painting {
     this.canvas = canvas;
     this.ctx = ctx;
     this.pixels = pixels;
-    this.mouseX = 0;
-    this.mouseY = 0;
-    this.canvas.addEventListener(WindowEvents.MOUSE_MOVE, (e: MouseEvent) =>
-      this.getMouseData(e),
-    );
   }
 
-  getMouseData(e: MouseEvent) {
-    this.mouseX = e.clientX;
-    this.mouseY = e.clientY;
-  }
-
-  generate(): Particle[] {
+  getMappedImage(): MappedImage[][] {
     const result = [];
 
     for (let y = 0; y < this.canvas.height; y++) {
+      const row = [];
       for (let x = 0; x < this.canvas.width; x++) {
         const red = this.pixels.data[(y * this.pixels.width + x) * 4];
         const green = this.pixels.data[(y * this.pixels.width + x) * 4 + 1];
         const blue = this.pixels.data[(y * this.pixels.width + x) * 4 + 2];
         const brightness = this.getRelativeBrightness(red, green, blue);
         const color = this.getColor(red, green, blue);
-
-        result.push(
-          new Particle(this.canvas, this.ctx, x, y, color, brightness),
-        );
+        const cell = {
+          brightness,
+          color,
+        };
+        row.push(cell);
       }
+      result.push(row);
     }
     return result;
   }
@@ -55,5 +50,18 @@ export default class Painting {
 
   getColor(red: number, green: number, blue: number): string {
     return `rgb(${red},${green},${blue})`;
+  }
+
+  generate(
+    canvas: HTMLCanvasElement,
+    ctx: CanvasRenderingContext2D,
+    size: number,
+    mappedImage: MappedImage[][],
+  ): Particle[] {
+    const particles = [];
+    for (let i = 0; i < size; i++) {
+      particles.push(new Particle(canvas, ctx, mappedImage));
+    }
+    return particles;
   }
 }
