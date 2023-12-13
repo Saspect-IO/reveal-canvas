@@ -6,6 +6,8 @@ A canvas 2D API project to demo paint and particle effects.
 - View on deskstop for interactive experience.
 - [Canvas 2D API Demo](https://saspect-io.github.io/reveal-canvas/)
 
+## Screenshot
+![image](https://github.com/Saspect-IO/reveal-canvas/assets/29488727/7ede0145-7c69-4b98-91b6-8242ac8c4f8a)
 
 
 ## Prerequisites
